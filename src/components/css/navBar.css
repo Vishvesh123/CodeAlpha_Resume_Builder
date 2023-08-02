@@ -1,0 +1,45 @@
+@import "https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap";
+
+.Nav {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 150px;
+  font-family: "Inconsolata", monospace;
+  font-size: 21px;
+  letter-spacing: 1px;
+}
+
+.navbar {
+  background-color: #d14d72;
+  height: 80px;
+  width: 600px;
+  border-radius: 7px 7px 0px 0px;
+}
+ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  display: block;
+  color: #ffffff;
+}
+a:hover {
+  color: #041562;
+}
+.active {
+  text-decoration: none;
+  position: relative;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -25px;
+  width: 100%;
+  border-bottom: 7px solid #ffffff;
+}

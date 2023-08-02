@@ -1,20 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Inconsolata:wght@800&family=Noto+Sans&family=Source+Code+Pro:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Inconsolata:wght@800&family=Noto+Sans&family=Josefin+Sans&display=swap");
 
 .Details {
   text-align: center;
-  font-family: "Source Code Pro", monospace;
-}
-.Detail {
+  font-family: "Josefin Sans", sans-serif;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
+
 .summary {
   margin-top: 150px;
-  height: 300px;
-  width: 1450px;
-  background-color: #ffffff;
-  border-radius: 7px;
-  box-shadow: 10px 10px 10px #ecf9ff;
+  height: 400px;
+  width: 600px;
+  text-align: center;
+  background-color: white;
+  border-radius: 0px 0px 7px 7px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 .summary h2 {
   font-size: 30px;
@@ -24,17 +24,17 @@
 }
 .heading {
   margin-top: 150px;
-  background-color: #ecf9ff;
-  border-radius: 7px;
+  background-color: #eeeeee;
+  border-radius: 0px 0px 7px 7px;
   height: 400px;
   width: 600px;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.heading button {
+  top: 100px;
 }
 
-.form1 {
-  margin: 80px;
-  font-size: 25px;
-}
 .Name {
   display: flex;
   justify-content: space-around;
@@ -51,6 +51,14 @@ button {
   font-size: 18px;
   position: relative;
   top: 40px;
+  border-color: #50d890;
+  color: #50d890;
+  background-color: white;
+  font-family: "Josefin Sans", sans-serif;
+}
+button:hover {
+  background-color: #50d890;
+  color: white;
 }
 
 .Education {
@@ -58,40 +66,52 @@ button {
   width: 600px;
   margin-top: 150px;
   text-align: center;
-  background-color: #ecf9ff;
-  border-radius: 7px;
+  background-color: #f1f6f9;
+  border-radius: 0px 0px 7px 7px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.form2 {
-  font-size: 25px;
-}
 .gen {
   margin: 30px;
 }
-.form1 input {
+.heading input {
   width: 80%;
   height: 60%;
   font-size: 18px;
   border-radius: 5px;
 }
-.form2 input {
-  width: 80%;
-  height: 40px;
-  font-size: 18px;
+
+.Education input {
+  width: 10%;
+  height: 60%;
+  font-size: 20px;
   border-radius: 5px;
   text-align: center;
 }
 
 .Skills {
-  height: 350px;
-  width: 180px;
+  /* height: 350px;
+  width: 180px; */
+  height: 400px;
+  width: 600px;
   margin-top: 150px;
   text-align: center;
-  background-color: #fff4f4;
-  border-radius: 7px;
+  background-color: #ecf2ff;
+  border-radius: 0px 0px 7px 7px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+.Skill {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 .Skills input {
   border-radius: 3px;
   height: 30px;
   font-size: 13px;
+}
+
+.Skills button {
+  top: 150px;
 }
