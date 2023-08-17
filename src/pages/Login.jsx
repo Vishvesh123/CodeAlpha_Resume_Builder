@@ -20,7 +20,10 @@ try{
         "Content-Type": "application/json",
       },
     });
-
+    if (!result.ok) {
+      throw new Error(`HTTP error! Status: ${result.status}`);
+    }
+  
     result = await result.json();
 
     if (result.name) {
