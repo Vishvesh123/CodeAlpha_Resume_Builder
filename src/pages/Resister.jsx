@@ -28,18 +28,38 @@ function Resister(props) {
       return;
     }
     if (password === password2) {
-      let result = await fetch("https://resume-builder-backend-ft2g.onrender.com/resister", {
-        method: "post",
-        body: JSON.stringify({ name, email, password, password2 }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      result = await result.json();
+      // let result = await fetch("https://resume-builder-backend-ft2g.onrender.com/resister", {
+      //   method: "post",
+      //   body: JSON.stringify({ name, email, password, password2 }),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      // result = await result.json();
+      try {
+        const response = await fetch("https://resume-builder-backend-ft2g.onrender.com/resister", {
+          method: "post",
+          body: JSON.stringify({ name, email, password, password2 }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+      
+        const result = await response.json();
+        localStorage.setItem("user", JSON.stringify(result));
+        console.log(result); // Process the result here
+      } catch (error) {
+        console.error("Error:", error);
+      }
+      
 
-      localStorage.setItem("user", JSON.stringify(result));
+     
       navigate("/");
-      console.log(result);
+     
     } else {
       toast.error("Wrong Password!");
     }
