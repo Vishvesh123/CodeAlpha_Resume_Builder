@@ -1,10 +1,11 @@
 const express = require("express");
+const bodyParser=require('body-parser');
 const cors = require("cors");
 require("./DB/config");
 const User = require("./DB/user");
 
 const app = express();
-
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cors({
   origin:'https://resume-builder-rn31.onrender.com',
@@ -52,7 +53,7 @@ app.post("/login", async (req, res) => {
     const user = await User.findOne({ email }).select("-password");
 
     if (user) {
-      res.json(user);
+      res.json({success:true,user})
     } else {
       res.status(404).json({ error: "User not found." });
     }
