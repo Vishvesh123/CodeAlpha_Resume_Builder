@@ -13,48 +13,48 @@ function Login(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // let result = await fetch("https://resume-builder-rn31.onrender.com/login", {
-    //   method: "post",
-    //   body: JSON.stringify({ email, password }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
+    let result = await fetch("https://resume-builder-rn31.onrender.com/login", {
+      method: "post",
+      body: JSON.stringify({ email, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    // result = await result.json();
+    result = await result.json();
 
-    // if (result.name) {
-    //   localStorage.setItem("user", JSON.stringify(result));
-    //   navigate("/");
-    // } else {
-    //   toast.error("Enter the entities correctly");
-    // }
-    try {
-      const response = await fetch("https://resume-builder-rn31.onrender.com/login", {
-        method: "post",
-        body: JSON.stringify({ email, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-  
-      const result = await response.json();
-  
-      if (result.name) {
-        localStorage.setItem("user", JSON.stringify(result));
-        navigate("/");
-      } else {
-        toast.error("Invalid login credentials");
-      }
-    } catch (error) {
-      console.error("Error:", error);
+    if (result.name) {
+      localStorage.setItem("user", JSON.stringify(result));
+      navigate("/");
+    } else {
+      toast.error("Enter the entities correctly");
     }
+    // try {
+    //   const response = await fetch("https://resume-builder-rn31.onrender.com/login", {
+    //     method: "post",
+    //     body: JSON.stringify({ email, password }),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+  
+    //   if (!response.ok) {
+    //     throw new Error(`HTTP error! Status: ${response.status}`);
+    //   }
+  
+    //   const result = await response.json();
+  
+    //   if (result.name) {
+    //     localStorage.setItem("user", JSON.stringify(result));
+    //     navigate("/");
+    //   } else {
+    //     toast.error("Invalid login credentials");
+    //   }
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
 
-    //console.log(email, password);
+    console.log(result);
   };
 
   useEffect(() => {
