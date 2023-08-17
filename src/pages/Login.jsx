@@ -13,7 +13,7 @@ function Login(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let result = await fetch("http://localhost:4000/login", {
+    let result = await fetch("https://resume-builder-rn31.onrender.com/login", {
       method: "post",
       body: JSON.stringify({ email, password }),
       headers: {

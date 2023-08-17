@@ -28,7 +28,7 @@ function Resister(props) {
       return;
     }
     if (password === password2) {
-      let result = await fetch("http://localhost:4000/resister", {
+      let result = await fetch("https://resume-builder-backend-ft2g.onrender.com/resister", {
         method: "post",
         body: JSON.stringify({ name, email, password, password2 }),
         headers: {
