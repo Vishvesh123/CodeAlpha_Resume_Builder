@@ -12,7 +12,7 @@ function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+try{
     let result = await fetch("https://resume-builder-rn31.onrender.com/login", {
       method: "post",
       body: JSON.stringify({ email, password }),
@@ -29,6 +29,11 @@ function Login(props) {
     } else {
       toast.error("Enter the entities correctly");
     }
+    // console.log(result);
+  }
+  catch (error){
+console.log("error",error)
+  }
     // try {
     //   const response = await fetch("https://resume-builder-rn31.onrender.com/login", {
     //     method: "post",
@@ -54,7 +59,7 @@ function Login(props) {
     //   console.error("Error:", error);
     // }
 
-    console.log(result);
+    
   };
 
   useEffect(() => {
