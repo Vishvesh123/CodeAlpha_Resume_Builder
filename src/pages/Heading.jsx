@@ -61,7 +61,7 @@ function Heading(props) {
             />
           </div>
         </div>
-        <button type="submit" onClick={handleClick}>
+        <button className="button" type="submit" onClick={handleClick}>
           Save
         </button>
       </div>

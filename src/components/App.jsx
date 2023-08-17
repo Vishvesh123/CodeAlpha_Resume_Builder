@@ -6,12 +6,17 @@ import "../components/css/graphics.css";
 
 import { Routes, Route } from "react-router-dom";
 
+import Private from "./Private";
 import Heading from "../pages/Heading";
 import Education from "../pages/Education";
 import Skills from "../pages/Skills";
 import Summary from "../pages/Summary";
+import Login from "../pages/Login";
+import Resister from "../pages/Resister";
+import NavbarMain from "./NavbarMain";
 
 import Navbar from "./Navbar";
+
 function App() {
   const [formData, setFormData] = useState({
     fname: "",
@@ -22,6 +27,9 @@ function App() {
     inter: "",
     high: "",
     summ: "",
+  });
+
+  const [skills, setSkills] = useState({
     skill1: "",
     skill2: "",
     skill3: "",
@@ -29,8 +37,6 @@ function App() {
     skill5: "",
     skill6: "",
   });
-
-  //changing states of pages
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,9 +46,18 @@ function App() {
     });
   };
 
+  const handleSkillChange = (event) => {
+    const { name, value } = event.target;
+    setSkills({
+      ...skills,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
+    console.log(skills);
 
     //Generate the PDF document
 
@@ -98,6 +113,9 @@ function App() {
     pdf.text(`Highschool Percentage: ${formData.high}`, 20, 180);
 
     //Skills
+
+    let ct = 1;
+    let y = 210;
     pdf.setFontSize(25);
     pdf.setFont(fontStyle, "bold");
     pdf.setTextColor(251, 37, 118);
@@ -106,12 +124,13 @@ function App() {
     pdf.setFontSize(fontSize);
     pdf.setTextColor(0, 0, 0);
     pdf.setFont(fontStyle, "normal");
-    pdf.text(`1.${formData.skill1}`, 20, 210);
-    pdf.text(`2.${formData.skill2}`, 20, 219);
-    pdf.text(`3.${formData.skill3}`, 20, 228);
-    pdf.text(`4.${formData.skill4}`, 20, 237);
-    pdf.text(`5.${formData.skill5}`, 20, 246);
-    pdf.text(`6.${formData.skill6}`, 20, 255);
+    for (const key in skills) {
+      if (skills[key] && skills[key] !== "") {
+        pdf.text(`${ct}.${skills[key]}`, 20, y);
+        y += 9;
+        ct++;
+      }
+    }
 
     //Declaration
     pdf.setFontSize(12);
@@ -126,66 +145,84 @@ function App() {
     // Save the PDF as a file
     pdf.save("resume.pdf");
   };
-  return (
-    <div className="Head">
-      <div>
-        <h1>
-          Buid Your <span>Resume!</span> For <span>Free</span>
-        </h1>
-        <div class="swatch">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
 
-      <div>
-        <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Summary
-                formData={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
+  // Handling navbars
+  const [isLogin, setLogin] = useState(false);
+  const [isResister, setResister] = useState(false);
+
+  return (
+    <div>
+      <NavbarMain isLogin={isLogin} isResister={isResister} />
+      <div className="Head">
+        <div>
+          <h1>
+            Buid Your <span>Resume!</span> For <span>Free</span>
+          </h1>
+          <div class="swatch">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+
+        <div>
+          {isLogin || isResister ? null : <Navbar />}
+
+          <Routes>
+            <Route element={<Private />}>
+              <Route
+                path="/"
+                element={
+                  <Summary
+                    formData={formData}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    setLogin={setLogin}
+                    setResister={setResister}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/heading"
-            element={
-              <Heading
-                formData={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
+              <Route
+                path="/heading"
+                element={
+                  <Heading
+                    formData={formData}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/education"
-            element={
-              <Education
-                formData={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
+              <Route
+                path="/education"
+                element={
+                  <Education
+                    formData={formData}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/skills"
-            element={
-              <Skills
-                formData={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
+              <Route
+                path="/skills"
+                element={
+                  <Skills
+                    formData={skills}
+                    handleChange={handleSkillChange}
+                    handleSubmit={handleSubmit}
+                  />
+                }
               />
-            }
-          />
-        </Routes>
+            </Route>
+            <Route path="/login" element={<Login setLogin={setLogin} />} />
+            <Route
+              path="/resister"
+              element={<Resister setResister={setResister} />}
+            />
+          </Routes>
+        </div>
       </div>
     </div>
   );

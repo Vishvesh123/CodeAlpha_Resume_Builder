@@ -1,0 +1,84 @@
+@import "https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap";
+@import url("https://fonts.googleapis.com/css2?family=Ysabeau+SC&display=swap");
+.NavbarMain {
+  color: #ffffff;
+  width: 100%;
+  margin-top: -18px;
+  margin-left: 7px;
+  background-color: #d61355;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  text-align: center;
+  height: 70px;
+  position: fixed;
+  left: -7px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+  display: block;
+  color: #ffffff;
+}
+
+.NavbarMain .main ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
+  margin-right: 150px;
+}
+.main li {
+  margin-right: 100px;
+}
+
+.NavbarMain h3 {
+  margin-right: 460px;
+  font-family: "Ysabeau SC", sans-serif;
+  font-size: 25px;
+  letter-spacing: 2px;
+}
+h4 {
+  margin-right: 50px;
+  font-family: "Ysabeau SC", sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #041562;
+  font-weight: bolder;
+}
+
+h3:hover {
+  color: #041562;
+}
+a:hover {
+  color: #f7ff45;
+}
+
+.active {
+  text-decoration: none;
+  position: relative;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -18px;
+  width: 100%;
+  border-bottom: 7px solid #ffffff;
+}
+
+.NavbarMain .main .ULisLogin {
+  display: flex;
+  justify-content: space-around;
+  background-color: #000000;
+  height: 70px;
+  width: 400px;
+  margin-right: 200px;
+}
+.NavbarMain .main .ULisLogin .LisLogin {
+  margin-right: 0px;
+}

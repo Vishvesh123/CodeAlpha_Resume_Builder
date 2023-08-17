@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "../components/css/details.css";
 
 function Skills(props) {
+  const [skills, setSkills] = useState([]);
+
+  const handleAddSkill = () => {
+    const newSkill = {
+      id: skills.length + 7,
+      name: `skill${skills.length + 7}`,
+      value: "",
+    };
+
+    setSkills((prevSkills) => [...prevSkills, newSkill]);
+  };
+
   return (
     <div className="Details">
-      <form onSubmit={props.handleSubmit}>
-        <div className="Skills">
+      <div className="Skills">
+        <form onSubmit={props.handleSubmit}>
           <h2>Skills</h2>
           <div className="Skill">
             <div>
@@ -68,10 +80,27 @@ function Skills(props) {
                 onChange={props.handleChange}
               />
             </div>
-            <button type="submit">Download PDF</button>
+
+            {skills.map((skill) => (
+              <div key={skill.id}>
+                <label>{skill.id}.</label>
+                <input
+                  type="text"
+                  name={skill.name}
+                  placeholder="Ex.HTML"
+                  value={props.formData[skill.name]}
+                  onChange={props.handleChange}
+                />
+              </div>
+            ))}
+
+            <button className="button" type="submit" id="submit">
+              Download PDF
+            </button>
           </div>
-        </div>
-      </form>
+        </form>
+        <button onClick={handleAddSkill}>Add Another Skill</button>
+      </div>
     </div>
   );
 }

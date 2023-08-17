@@ -5,6 +5,10 @@ import "../components/css/details.css";
 
 function Summary(props) {
   console.log(props.formData);
+
+  props.setLogin(false);
+  props.setResister(false);
+
   const navigate = useNavigate();
   const [isclicked, setClick] = useState(false);
 
@@ -28,7 +32,7 @@ function Summary(props) {
           value={props.formData.summ}
           onChange={props.handleChange}
         />
-        <button type="submit" onClick={handleClick}>
+        <button className="button" type="submit" onClick={handleClick}>
           Save
         </button>
       </div>

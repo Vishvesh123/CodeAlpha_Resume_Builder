@@ -47,7 +47,7 @@ function Education(props) {
             onChange={props.handleChange}
           />
         </div>
-        <button type="submit" onClick={handleClick}>
+        <button className="button" type="submit" onClick={handleClick}>
           Save
         </button>
       </div>

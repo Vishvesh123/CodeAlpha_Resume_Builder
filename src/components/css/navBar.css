@@ -16,26 +16,26 @@
   width: 600px;
   border-radius: 7px 7px 0px 0px;
 }
-ul {
+.navbar ul {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
 }
 
-a {
+.navbar a {
   text-decoration: none;
   display: block;
   color: #ffffff;
 }
-a:hover {
+.navbar a:hover {
   color: #041562;
 }
-.active {
+.Nav .navbar .active {
   text-decoration: none;
   position: relative;
 }
 
-.active::after {
+.Nav .navbar .active::after {
   content: "";
   position: absolute;
   left: 0;

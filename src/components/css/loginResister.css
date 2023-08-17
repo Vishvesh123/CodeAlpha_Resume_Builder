@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Ysabeau+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Inconsolata:wght@800&family=Noto+Sans&family=Josefin+Sans&display=swap");
+
+/* Resister page styling */
+
+.Resister {
+  height: 610px;
+  width: 440px;
+  margin-top: 53px;
+  margin-right: 12px;
+  font-family: "Josefin Sans", sans-serif;
+  border-radius: 0px 0px 7px 7px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background-color: #000011;
+}
+.Input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  position: relative;
+  top: 40px;
+}
+.Input input {
+  margin-top: 40px;
+  width: 60%;
+  height: 50px;
+  font-size: 18px;
+  font-family: "Josefin Sans", sans-serif;
+  text-align: center;
+  border: 3px solid #663399;
+  background-color: #000011;
+
+  color: #ffffff;
+}
+
+.Input input:hover {
+  box-shadow: 0 2px 8px #663399;
+}
+
+.Input input::placeholder {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+input:-internal-autofill-selected {
+  appearance: menulist-button;
+  background-image: none !important;
+  background-color: -internal-light-dark(#000011, #000011) !important;
+  color: #ffffff;
+}
+.ResisterSubmit {
+  position: relative;
+  top: 130px;
+  left: 140px;
+  color: #00ffab;
+  border: 3px solid #00ffab;
+  height: 50px;
+  width: 170px;
+  font-size: 22px;
+  font-family: "Ysabeau SC", sans-serif;
+  font-weight: bolder;
+  background-color: #000011;
+}
+.ResisterSubmit:hover {
+  background-color: #00ffab;
+  color: #ffffff;
+  border: 3px solid #ffffff;
+}
+
+/* Login page styling */
+
+.Login {
+  background-color: #000011;
+  height: 610px;
+  width: 440px;
+  margin-top: 53px;
+  margin-right: 12px;
+  border-radius: 0px 0px 7px 7px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.loginInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  position: relative;
+  top: 60px;
+}
+
+.loginInput input {
+  margin-top: 40px;
+  width: 60%;
+  height: 50px;
+  font-size: 18px;
+  font-family: "Josefin Sans", sans-serif;
+  text-align: center;
+  background-color: #000011;
+  border: 3px solid aqua;
+  color: #ffffff;
+}
+
+.loginInput input:hover {
+  box-shadow: 0 2px 8px rgb(188, 245, 245);
+}
+
+.loginButton {
+  position: relative;
+  top: 170px;
+  left: 140px;
+  color: #00ffab;
+  border: 3px solid #00ffab;
+  height: 50px;
+  width: 170px;
+  font-size: 22px;
+  font-family: "Ysabeau SC", sans-serif;
+  font-weight: bolder;
+  background-color: #000011;
+}
+
+.loginButton:hover {
+  background-color: #00ffab;
+  color: #ffffff;
+  border: 3px solid #ffffff;
+}
+.loginInput input::placeholder {
+  color: #ffffff;
+  font-weight: 500;
+}
