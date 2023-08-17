@@ -29,18 +29,39 @@ app.post("/resister", async (req, res) => {
   res.send(result);
 });
 
+// app.post("/login", async (req, res) => {
+//   if (req.body.password && req.body.email) {
+//     let user = await User.findOne(req.body).select("-password");
+//     if (user) {
+//       res.send(user);
+//     } else {
+//       res.send({ result: "No user found" });
+//     }
+//   } else {
+//     res.send({ result: "No user found" });
+//   }
+// });
 app.post("/login", async (req, res) => {
-  if (req.body.password && req.body.email) {
-    let user = await User.findOne(req.body).select("-password");
-    if (user) {
-      res.send(user);
-    } else {
-      res.send({ result: "No user found" });
+  try {
+    const { email, password } = req.body;
+    
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email and password are required." });
     }
-  } else {
-    res.send({ result: "No user found" });
+
+    const user = await User.findOne({ email }).select("-password");
+
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ error: "User not found." });
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ error: "An error occurred during login." });
   }
 });
+
 
 app.listen(4000, (req, res) => {
   console.log("server is running on port 4000...");
