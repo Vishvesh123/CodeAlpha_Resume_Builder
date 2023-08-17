@@ -13,24 +13,49 @@ function Login(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let result = await fetch("https://resume-builder-rn31.onrender.com/login", {
-      method: "post",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    // let result = await fetch("https://resume-builder-rn31.onrender.com/login", {
+    //   method: "post",
+    //   body: JSON.stringify({ email, password }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
 
-    result = await result.json();
+    // result = await result.json();
 
-    if (result.name) {
-      localStorage.setItem("user", JSON.stringify(result));
-      navigate("/");
-    } else {
-      toast.error("Enter the entities correctly");
-    }
+    // if (result.name) {
+    //   localStorage.setItem("user", JSON.stringify(result));
+    //   navigate("/");
+    // } else {
+    //   toast.error("Enter the entities correctly");
+    // }
+    fetch("https://resume-builder-rn31.onrender.com/login", {
+  method: "post",
+  body: JSON.stringify({ email, password }),
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+  return response.json();
+})
+.then(result => {
+  if (result.name) {
+    localStorage.setItem("user", JSON.stringify(result));
+    navigate("/");
+  } else {
+    toast.error("Enter the entities correctly");
+  }
+})
+.catch(error => {
+  console.error("Error:", error);
+});
 
-    console.log(email, password);
+
+    //console.log(email, password);
   };
 
   useEffect(() => {

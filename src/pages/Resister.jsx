@@ -22,7 +22,7 @@ function Resister(props) {
 
   const submitData = async (e) => {
     e.preventDefault();
-    console.log(name, email, password, password2);
+    //console.log(name, email, password, password2);
 
     if (name === "" || email === "" || password === "" || password2 === "") {
       return;
