@@ -29,32 +29,30 @@ function Login(props) {
     // } else {
     //   toast.error("Enter the entities correctly");
     // }
-    fetch("https://resume-builder-rn31.onrender.com/login", {
-      method: "post",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(response => {
+    try {
+      const response = await fetch("https://resume-builder-rn31.onrender.com/login", {
+        method: "post",
+        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.json();    
-    })
-    .then(result => {
+  
+      const result = await response.json();
+  
       if (result.name) {
         localStorage.setItem("user", JSON.stringify(result));
         navigate("/");
       } else {
-        toast.error("Enter the entities correctly");
+        toast.error("Invalid login credentials");
       }
-    })
-    .catch(error => {
+    } catch (error) {
       console.error("Error:", error);
-    });
-    
-
+    }
 
     //console.log(email, password);
   };
