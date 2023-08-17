@@ -6,7 +6,11 @@ const User = require("./DB/user");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:'https://resume-builder-rn31.onrender.com',
+  credentials:true,
+  methods:['POST'],
+}));
 
 app.post("/resister", async (req, res) => {
   const email = req.body.email;
