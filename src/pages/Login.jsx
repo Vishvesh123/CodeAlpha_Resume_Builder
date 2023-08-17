@@ -40,19 +40,14 @@ function Login(props) {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.text(); // Read the response as text
+      return response.json();    
     })
-    .then(text => {
-      try {
-        const result = JSON.parse(text);
-        if (result.name) {
-          localStorage.setItem("user", JSON.stringify(result));
-          navigate("/");
-        } else {
-          toast.error("Enter the entities correctly");
-        }
-      } catch (parseError) {
-        console.error("Error parsing JSON:", parseError);
+    .then(result => {
+      if (result.name) {
+        localStorage.setItem("user", JSON.stringify(result));
+        navigate("/");
+      } else {
+        toast.error("Enter the entities correctly");
       }
     })
     .catch(error => {
