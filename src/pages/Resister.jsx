@@ -24,6 +24,27 @@ function Resister(props) {
     e.preventDefault();
     //console.log(name, email, password, password2);
 
+    // Input Field Validation
+    const nameRegex = /^[a-zA-Z]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!nameRegex.test(name)) {
+      alert("Name should only contain letters from a to z.");
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    if (!passwordRegex.test(password)) {
+      alert(
+        "Password should be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character."
+      );
+      return;
+    }
+
     if (name === "" || email === "" || password === "" || password2 === "") {
       return;
     }
@@ -37,29 +58,29 @@ function Resister(props) {
       // });
       // result = await result.json();
       try {
-        const response = await fetch("https://resume-builder-backend-ft2g.onrender.com/resister", {
-          method: "post",
-          body: JSON.stringify({ name, email, password, password2 }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      
+        const response = await fetch(
+          "https://resume-builder-backend-ft2g.onrender.com/resister",
+          {
+            method: "post",
+            body: JSON.stringify({ name, email, password, password2 }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-      
+
         const result = await response.json();
         localStorage.setItem("user", JSON.stringify(result));
         console.log(result); // Process the result here
       } catch (error) {
         console.error("Error:", error);
       }
-      
 
-     
       navigate("/");
-     
     } else {
       toast.error("Wrong Password!");
     }
