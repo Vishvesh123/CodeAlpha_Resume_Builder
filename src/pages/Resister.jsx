@@ -23,7 +23,6 @@ function Resister(props) {
   const submitData = async (e) => {
     e.preventDefault();
     //console.log(name, email, password, password2);
-
     // Input Field Validation
     const nameRegex = /^[a-zA-Z]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
