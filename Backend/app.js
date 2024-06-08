@@ -1,17 +1,20 @@
 const express = require("express");
-const bodyParser=require('body-parser');
+const bodyParser = require("body-parser");
 const cors = require("cors");
 require("./DB/config");
 const User = require("./DB/user");
 
 const app = express();
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({
-  origin:'https://resume-builder-rn31.onrender.com',
-  credentials:true,
-  methods:['POST'],
-}));
+app.use(
+  cors({
+    // origin:'https://resume-builder-rn31.onrender.com',
+    origin: "https://resume-builder-backend-ft2g.onrender.com",
+    credentials: true,
+    methods: ["POST"],
+  })
+);
 
 app.post("/resister", async (req, res) => {
   const email = req.body.email;
@@ -45,15 +48,17 @@ app.post("/resister", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    
+
     if (!email || !password) {
-      return res.status(400).json({ error: "Email and password are required." });
+      return res
+        .status(400)
+        .json({ error: "Email and password are required." });
     }
 
     const user = await User.findOne({ email }).select("-password");
 
     if (user) {
-      res.json({success:true,user})
+      res.json({ success: true, user });
     } else {
       res.status(404).json({ error: "User not found." });
     }
@@ -62,7 +67,6 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: "An error occurred during login." });
   }
 });
-
 
 app.listen(4000, (req, res) => {
   console.log("server is running on port 4000...");
