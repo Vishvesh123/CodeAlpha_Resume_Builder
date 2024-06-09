@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   cors({
-    // origin: "https://resume-builder-rn31.onrender.com",
+    origin: "https://resume-builder-rn31.onrender.com",
 
     credentials: true,
     methods: ["POST"],
