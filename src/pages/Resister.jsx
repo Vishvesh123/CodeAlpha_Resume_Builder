@@ -4,7 +4,6 @@ import "../components/css/loginResister.css";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import isEmailValid from "isemailvalid";
 
 function Resister(props) {
   const [name, setName] = useState("");
@@ -35,7 +34,7 @@ function Resister(props) {
       return;
     }
 
-    if (!emailRegex.test(email) && !isEmailValid(email)) {
+    if (!emailRegex.test(email)) {
       toast.info("Please enter a valid email address.");
       return;
     }
