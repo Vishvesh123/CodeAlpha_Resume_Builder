@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://resume-builder-rn31.onrender.com",
+    // origin: "https://resume-builder-rn31.onrender.com",
 
     credentials: true,
     methods: ["POST"],
@@ -33,18 +33,6 @@ app.post("/resister", async (req, res) => {
   res.send(result);
 });
 
-// app.post("/login", async (req, res) => {
-//   if (req.body.password && req.body.email) {
-//     let user = await User.findOne(req.body).select("-password");
-//     if (user) {
-//       res.send(user);
-//     } else {
-//       res.send({ result: "No user found" });
-//     }
-//   } else {
-//     res.send({ result: "No user found" });
-//   }
-// });
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;

@@ -3,7 +3,7 @@ import "../components/css/loginResister.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from 'axios';
+import axios from "axios";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -13,67 +13,32 @@ function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-      const {data}=await axios.post('https://resume-builder-backend-ft2g.onrender.com/login',{
-        email,password
-      });
-      //console.log(data.user);
-   
+    try {
+      const { data } = await axios.post(
+        // "https://resume-builder-backend-ft2g.onrender.com/login",
+        "http://localhost:4000/login",
+        {
+          email,
+          password,
+        }
+      );
+      console.log(data);
 
-      if (data.user.name) {
+      if (
+        data.user.name &&
+        data.user.email &&
+        data.user.email === email &&
+        data.user.password2 === password
+      ) {
         localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/");
       } else {
-        toast.error("Enter the entities correctly");
+        toast.error("Enter the correct password");
       }
-    }
-    catch(error){
+    } catch (error) {
       console.log(error);
+      toast.error("User not found or enterred email is wrong");
     }
-   
-
-    // let result = await fetch("http://localhost:4000/login", {
-    //   method: "post",
-    //   body: JSON.stringify({ email, password }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // }).then((res)=>{
-    //   console.log(res.data);
-    // }).catch((err)=>{
-    //   console.log(err);
-    // });
-    // console.log(result);
-
-
-    // fetch("https://resume-builder-rn31.onrender.com/login", {
-    //   method: "post",
-    //   body: JSON.stringify({ email, password }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    // .then(response => {
-    //   if (!response.ok) {
-    //     throw new Error(`HTTP error! Status: ${response.status}`);
-    //   }
-    //   return response.json();    
-    // })
-    // .then(result => {
-    //   if (result.name) {
-    //     localStorage.setItem("user", JSON.stringify(result));
-    //     navigate("/");
-    //   } else {
-    //     toast.error("Enter the entities correctly");
-    //   }
-    // })
-    // .catch(error => {
-    //   console.error("Error:", error);
-    // });
-    
-
-
-    //console.log(email, password);
   };
 
   useEffect(() => {
