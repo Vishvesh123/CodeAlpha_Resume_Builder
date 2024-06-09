@@ -30,15 +30,15 @@ function Resister(props) {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!nameRegex.test(name)) {
-      alert("Name should only contain letters from a to z.");
+      toast.info("Name should only contain letters from a to z.");
       return;
     }
     if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address.");
+      toast.info("Please enter a valid email address.");
       return;
     }
     if (!passwordRegex.test(password)) {
-      alert(
+      toast.info(
         "Password should be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character."
       );
       return;
